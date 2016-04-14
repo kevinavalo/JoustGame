@@ -132,6 +132,10 @@ public class Bird {
 		this.x += this.vx * dt;
 		this.y += this.vy * dt;
 	}
+	public void movePositionAI() {
+		this.x += this.vx *dt;
+		this.y += this.vy *.15/5;
+	}
 
 	public void moveRight() {
 		this.vx += 9.0;
@@ -140,6 +144,28 @@ public class Bird {
 		// this.x = this.x + this.vx * dt;
 		// this.y = this.y - this.vy * dt;
 		this.movingRight = true;
+	}
+	
+	public void moveRightAI() {
+		this.vx += 9.0;
+		this.vy = -30;
+		this.movingRight = true;
+	}
+	
+	public void flipRightAI () {
+		this.vx += 9.0;
+		this.movingRight = true;
+	}
+	
+	public void moveLeftAI() {
+		this.vx -= 9.0;
+		this.vy = -30;
+		this.movingRight = false;
+	}
+	
+	public void flipLeftAI () {
+		this.vx -= 9.0;
+		this.movingRight = false;
 	}
 
 	public void moveLeft() {
@@ -160,7 +186,6 @@ public class Bird {
 			this.dt = 0.15;
 		}
 
-		System.out.println(x);
 	}
 
 	/*
@@ -260,6 +285,96 @@ public class Bird {
 
 	public void tick() {
 		this.timer++;
+	}
+	
+	public int getTick() {
+		return this.timer;
+	}
+	
+	public void moveBirdLeft(boolean birdCollide){
+		if(this.getPos() != 3){
+			System.out.println("!3" + " " + this.getPos());
+			if(birdCollide){
+				this.setPos(3);
+				this.flipLeftAI();
+			} else {
+				this.setPos(3);
+				this.moveLeftAI();
+			}
+			
+		} else if(this.getPos() == 3){
+			if(birdCollide){
+				this.setPos(4);
+				this.flipLeftAI();
+			} else {
+				this.setPos(4);
+				this.moveLeftAI();
+			}
+			System.out.println("3");
+		} else if(this.getPos() == 4){
+			if(birdCollide){
+				this.setPos(5);
+				this.flipLeftAI();
+			} else {
+				this.setPos(5);
+				this.moveLeftAI();
+			}
+			System.out.println("4");
+		} else if(this.getPos() == 5){
+			if(birdCollide){
+				this.setPos(3);
+				this.flipLeftAI();
+			} else {
+				this.setPos(3);
+				this.moveLeftAI();
+			}
+			System.out.println("5");
+		}
+	}
+	public void moveBirdRight(boolean birdCollide) {
+		 if(this.getPos() != 0){
+				System.out.println("!0" + " " + this.getPos());
+				if(birdCollide){
+					this.setPos(0);
+					this.flipRightAI();
+				} else {
+					this.setPos(0);
+					this.moveRightAI();
+				}
+				
+			}else if(this.getPos() == 0){
+				if(birdCollide){
+					this.setPos(1);
+					this.flipRightAI();
+				} else {
+					this.setPos(1);
+					this.moveRightAI();
+				}
+				System.out.println("0");
+			}else if(this.getPos() == 1){
+				if(birdCollide){
+					this.setPos(2);
+					this.flipRightAI();
+				} else {
+					this.setPos(2);
+					this.moveRightAI();
+				}
+				System.out.println("1");
+			}else if(this.getPos() == 2){
+				if(birdCollide){
+					this.setPos(0);
+					this.flipRightAI();
+				} else {
+					this.setPos(0);
+					this.moveRightAI();
+				}
+				System.out.println("2");
+			}
+
+	}
+	
+	public void eliminateBird() {
+		
 	}
 }
 
